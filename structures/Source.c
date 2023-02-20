@@ -11,6 +11,7 @@ int check_counter(FILE* f, int counter, char check_line[], char temp)
 		else {
 			counter = 0;
 			return 0;
+			break;
 		}
 	}
 	return counter;
@@ -40,7 +41,7 @@ struct Cameras* input_name_in_struct(FILE* f, struct Cameras* TOP, int j, int co
 		line = input_line(f);
 		TOP = (struct Cameras*)realloc(TOP, (j + 1) * sizeof(struct Cameras));
 		TOP[j].name = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].name, line);
+		strcpy_s(TOP[j].name, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -54,7 +55,7 @@ struct Cameras* input_format_in_struct(FILE* f, struct Cameras* TOP, int j, int 
 	{
 		line = input_line(f);
 		TOP[j].format = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].format, line);
+		strcpy_s(TOP[j].format, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -68,7 +69,7 @@ struct Cameras* input_weight_in_struct(FILE* f, struct Cameras* TOP, int j, int 
 	{
 		line = input_line(f);
 		TOP[j].weight = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].weight, line);
+		strcpy_s(TOP[j].weight, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -82,7 +83,7 @@ struct Cameras* input_dimensions_in_struct(FILE* f, struct Cameras* TOP, int j, 
 	{
 		line = input_line(f);
 		TOP[j].dimensions = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].dimensions, line);
+		strcpy_s(TOP[j].dimensions, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -96,7 +97,7 @@ struct Cameras* input_speed_in_struct(FILE* f, struct Cameras* TOP, int j, int c
 	{
 		line = input_line(f);
 		TOP[j].speed = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].speed, line);
+		strcpy_s(TOP[j].speed, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -110,7 +111,7 @@ struct Cameras* input_buy_in_struct(FILE* f, struct Cameras* TOP, int j, int cou
 	{
 		line = input_line(f);
 		TOP[j].buy = (char*)calloc(strlen(line) + 1, sizeof(char));
-		strcpy(TOP[j].buy, line);
+		strcpy_s(TOP[j].buy, sizeof line, line);
 		(*elements)++;
 		free(line);
 	}
@@ -134,6 +135,7 @@ struct Cameras* input(struct Cameras* TOP, FILE* f, char name_file[], char forma
 	char* line;
 	int counter = 0, j = 0, elements = 0;
 	line = (char*)calloc(1, sizeof(char*));
+	printf("1111");
 	while (!feof(f))
 	{
 		temp = fgetc(f);
@@ -170,7 +172,7 @@ int check_choice(int res, int cam_num)
 {
 	char choice;
 	char cam = cam_num + '0';
-	scanf("%c", &choice);
+	scanf_s("%c", &choice);
 	if (choice < '1' || choice > cam)
 	{
 		printf("try again\n");
@@ -183,7 +185,7 @@ int check_choice(int res, int cam_num)
 
 struct Cameras* del_camera(struct Cameras* TOP, int res, int cam_num)
 {
-	for (int i = res - 1;i < cam_num;i++)
+	for (int i = res - 1;i < cam_num - 1;i++)
 	{
 		TOP[i] = TOP[i + 1];
 	}
@@ -332,7 +334,7 @@ void menu(struct Cameras* TOP, int cam_num, int res)
 		break;
 	case 3:
 		printf("---Choose the field:\n--- 1 - Camera name\n--- 2 - Buy\n--- 3 - Speed\n");
-		scanf("%d", &sort_check);
+		scanf_s("%d", &sort_check);
 		if (sort_check < 1 || sort_check > 3)
 		{
 			getchar();
