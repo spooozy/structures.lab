@@ -11,7 +11,6 @@ int check_counter(FILE* f, int counter, char check_line[], char temp)
 		else {
 			counter = 0;
 			return 0;
-			break;
 		}
 	}
 	return counter;
