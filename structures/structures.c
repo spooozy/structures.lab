@@ -14,7 +14,7 @@ int main()
 	char dimensions_file[] = "Dimensions:</strong>";
 	char speed_file[] = "speed:</strong>";
 	char buy_file[] = "Buy: $";
-	f = fopen("TOP.txt", "r");
+	f = fopen_s(&f,"TOP.txt", "r");
 	TOP = input(TOP, f, name_file, format_file, weight_file, dimensions_file, speed_file, buy_file, &cam_num);
 	fclose(f);
 	menu(TOP, cam_num, res);
