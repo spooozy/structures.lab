@@ -3,4 +3,4 @@ project(structures.lab C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(structure structures/main.c structures/Header.h structures/Source.c)
+add_executable(structures structures/main.c structures/Header.h structures/Source.c)
