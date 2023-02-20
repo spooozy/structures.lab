@@ -183,7 +183,7 @@ int check_choice(int res, int cam_num)
 
 struct Cameras* del_camera(struct Cameras* TOP, int res, int cam_num)
 {
-	for (int i = res - 1;i < cam_num - 1;i++)
+	for (int i = res - 1;i < cam_num;i++)
 	{
 		TOP[i] = TOP[i + 1];
 	}
